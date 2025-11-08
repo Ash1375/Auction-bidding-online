@@ -1,19 +1,25 @@
 const mongoose = require("mongoose");
 
 /**
- * Payment Schema for storing transaction details in MongoDB
- * This schema handles secure payment processing for auction winners
+ * Payment Schema for storing mock transaction details in MongoDB
+ * This schema simulates payment processing for auction winners (DEMO ONLY - NOT FOR PRODUCTION)
  */
 const paymentSchema = new mongoose.Schema(
   {
+    // Unique transaction ID for mock tracking
+    transactionId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     // Reference to the auction being paid for
     auctionId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Auction",
       required: true,
     },
-    // ID of the buyer (winning bidder)
-    buyerId: {
+    // ID of the payer (winning bidder)
+    payerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
@@ -34,18 +40,13 @@ const paymentSchema = new mongoose.Schema(
       type: String,
       default: "usd",
     },
-    // Stripe PaymentIntent ID for tracking the transaction
-    stripePaymentIntentId: {
+    // Payment status: pending, succeeded, failed
+    paymentStatus: {
       type: String,
-      required: true,
-    },
-    // Payment status: pending, succeeded, failed, or canceled
-    status: {
-      type: String,
-      enum: ["pending", "succeeded", "failed", "canceled"],
+      enum: ["pending", "succeeded", "failed"],
       default: "pending",
     },
-    // Payment method used (e.g., card, bank transfer)
+    // Mock payment method (e.g., card, bank transfer)
     paymentMethod: {
       type: String,
       default: "card",

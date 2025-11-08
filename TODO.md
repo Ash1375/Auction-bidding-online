@@ -20,10 +20,10 @@
 - [x] Comment every major function and explain logic clearly
 
 ## Testing
-- [ ] Test backend API endpoints with valid admin JWT token
-- [ ] Verify user management endpoints (get, update, delete)
-- [ ] Verify auction monitoring endpoints (get, update status)
-- [ ] Verify dispute resolution endpoints (get, resolve)
+- [x] Test backend API endpoints with valid admin JWT token
+- [x] Verify user management endpoints (get, update, delete)
+- [x] Verify auction monitoring endpoints (get, update status)
+- [x] Verify dispute resolution endpoints (get, resolve)
 - [ ] Test frontend admin dashboard renders correctly
 - [ ] Verify tables display data properly
 - [ ] Verify modals open and forms submit correctly

@@ -16,31 +16,13 @@ const validatePaymentInitiate = (req, res, next) => {
   next();
 };
 
-/**
- * Middleware for input validation on payment confirmation
- * Ensures paymentIntentId is provided in request body
- */
-const validatePaymentConfirm = (req, res, next) => {
-  const { paymentIntentId } = req.body;
-  if (!paymentIntentId) {
-    return res.status(400).json({ message: "Payment Intent ID is required" });
-  }
-  next();
-};
-
-// ✅ Initiate payment - POST /api/payment/initiate
+// ✅ Initiate payment - POST /api/payment/initiate (MOCK DEMO ONLY)
 router.post("/initiate", authMiddleware, validatePaymentInitiate, paymentController.initiatePayment);
 
-// ✅ Confirm payment - POST /api/payment/confirm (for manual confirmation)
-router.post("/confirm", authMiddleware, validatePaymentConfirm, paymentController.confirmPayment);
-
-// ✅ Get payment status - GET /api/payment/:paymentId
-router.get("/:paymentId", authMiddleware, paymentController.getPaymentStatus);
-
-// ✅ Payment success callback - GET /api/payment/success
+// ✅ Payment success callback - GET /api/payment/success (MOCK DEMO ONLY)
 router.get("/success", authMiddleware, paymentController.paymentSuccess);
 
-// ✅ Payment failure callback - GET /api/payment/failure
+// ✅ Payment failure callback - GET /api/payment/failure (MOCK DEMO ONLY)
 router.get("/failure", authMiddleware, paymentController.paymentFailure);
 
 module.exports = router;
