@@ -15,7 +15,9 @@ const AnalyticsDashboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchAnalytics();
+    if (user) {
+      fetchAnalytics();
+    }
   }, [user]);
 
   const fetchAnalytics = async () => {
@@ -23,10 +25,10 @@ const AnalyticsDashboard = () => {
       setLoading(true);
       let endpoint = '';
 
-      if (user.role === 'admin') {
+      if (user?.role === 'admin') {
         endpoint = '/analytics/admin';
-      } else if (user.role === 'seller') {
-        endpoint = `/analytics/seller/${user.id}`;
+      } else if (user?.role === 'seller') {
+        endpoint = `/analytics/seller/${user._id}`;
       } else {
         setError('Unauthorized access');
         return;
